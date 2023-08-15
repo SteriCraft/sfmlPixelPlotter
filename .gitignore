@@ -1,7 +1,7 @@
 .vs/
 x64/
 
-/sfmlPixelPlotter.sln
-/sfmlPixelPlotter.vcxproj
-/sfmlPixelPlotter.vcxproj.filters
-/sfmlPixelPlotter.vcxproj.user
+/*.sln
+/*.vcxproj
+/*.vcxproj.filters
+/*.vcxproj.user
