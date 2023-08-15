@@ -1,6 +1,11 @@
 #include "mainWindow.h"
 #include "plot.h"
 
+/*
+-> To draw pixel by pixel, go to plot.cpp -> compute()
+-> To draw SFML objects, go to mainWindow.cpp -> update();
+*/
+
 int main()
 {
     SharedData data;
@@ -12,7 +17,7 @@ int main()
     {
         if (data.eventType == Event::CAMERA_MOVED)
         {
-            plot.compute(); // Do you work here
+            plot.compute();
         }
         else if (data.eventType == Event::WINDOW_RESIZED)
         {

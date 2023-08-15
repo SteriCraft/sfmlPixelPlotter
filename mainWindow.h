@@ -16,7 +16,7 @@
 */
 
 namespace Display
-{	
+{
 	enum class State { CLOSED = 0, OPENED };
 	enum class Command { NONE = 0, CLOSE };
 
@@ -30,14 +30,14 @@ namespace Display
 
 	struct DebugPanel
 	{
-		sf::Font *font;
+		sf::Font* font;
 
-		sf::Text *fpsTxt;
-		sf::Text *mousePlotPositionTxt;
-		sf::Text *plotBoundsTxt;
-		sf::Text *cameraPosTxt;
-		sf::Text *zoomTxt;
-		sf::Text *helpTxt;
+		sf::Text* fpsTxt;
+		sf::Text* mousePlotPositionTxt;
+		sf::Text* plotBoundsTxt;
+		sf::Text* cameraPosTxt;
+		sf::Text* zoomTxt;
+		sf::Text* helpTxt;
 	};
 
 	enum class LineType { ABSOLUTE_MAIN = 0, MAIN, NORMAL };
@@ -61,55 +61,55 @@ namespace Display
 	};
 
 	class MainWindow {
-		public:
-			MainWindow(SharedData *data);
-			~MainWindow();
+	public:
+		MainWindow(SharedData* data);
+		~MainWindow();
 
-			bool isOpen();
+		bool isOpen();
 
-		private:
-			void windowLoop();
-			bool timeForNextFrame();
+	private:
+		void windowLoop();
+		bool timeForNextFrame();
 
-			void handleEvents();
-			void checkCommands();
-			void update();
-			void updateScreenBuffer();
-			void computeGrid();
-			void createGridLabels();
-			void drawGrid();
+		void handleEvents();
+		void checkCommands();
+		void update();
+		void updateScreenBuffer();
+		void computeGrid();
+		void createGridLabels();
+		void drawGrid();
 
-			void initDebugPanel();
-			void drawDebugInfo();
-			void deleteDebugPointers();
+		void initDebugPanel();
+		void drawDebugInfo();
+		void deleteDebugPointers();
 
-			void getBounds();
-			void resizePixelData();
+		void getBounds();
+		void resizePixelData();
 
-			sf::View *m_dynamicView;
-			sf::View *m_staticView;
-			sf::Vector2f m_cameraPosition;
-			float m_zoom;
-			bool m_moving;
-			sf::Vector2i m_lastMousePosition;
-			Grid m_grid;
+		sf::View* m_dynamicView;
+		sf::View* m_staticView;
+		sf::Vector2f m_cameraPosition;
+		float m_zoom;
+		bool m_moving;
+		sf::Vector2i m_lastMousePosition;
+		Grid m_grid;
 
-			sf::RenderWindow *m_window;
-			sf::Image m_screenImage;
-			sf::Texture m_screenTexture;
-			sf::Sprite m_screenSprite;
-			SharedData *m_data;
+		sf::RenderWindow* m_window;
+		sf::Image m_screenImage;
+		sf::Texture m_screenTexture;
+		sf::Sprite m_screenSprite;
+		SharedData* m_data;
 
-			sf::Clock m_chrono;
-			sf::Time m_timePoint;
-			float m_framerate;
+		sf::Clock m_chrono;
+		sf::Time m_timePoint;
+		float m_framerate;
 
-			bool m_showDebug;
-			DebugPanel m_debugPanel;
+		bool m_showDebug;
+		DebugPanel m_debugPanel;
 
-			ThreadControl m_status;
-			std::thread	*m_windowThread;
+		ThreadControl m_status;
+		std::thread* m_windowThread;
 
-			static std::string decimal2str(float value, unsigned int precision = 2);
+		static std::string decimal2str(float value, unsigned int precision = 2);
 	};
 }

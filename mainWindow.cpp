@@ -7,7 +7,7 @@
 
 using namespace Display;
 
-MainWindow::MainWindow(SharedData *data)
+MainWindow::MainWindow(SharedData* data)
 {
 	m_window = nullptr;
 	m_status.currentState = State::OPENED;
@@ -59,6 +59,7 @@ void MainWindow::windowLoop()
 
 	m_showDebug = true;
 
+	m_data->eventType = Event::CAMERA_MOVED;
 	m_framerate = 0.f;
 	m_timePoint = m_chrono.getElapsedTime();
 	while (m_window->isOpen())
@@ -209,7 +210,7 @@ void MainWindow::update()
 
 	// Pixel data is drawn in the referential of the window
 	updateScreenBuffer();
-	
+
 	// ========= ELEMENTS IN SFML REFERENTIAL =========
 	//m_window->setView(*m_dynamicView);
 	//
@@ -233,7 +234,10 @@ void MainWindow::updateScreenBuffer()
 {
 	m_window->setView(*m_staticView);
 
+	m_data->mutex.lock();
 	m_screenImage.create(m_data->windowWidth, m_data->windowHeight, m_data->pixels);
+	m_data->mutex.unlock();
+
 	m_screenTexture.loadFromImage(m_screenImage);
 	m_screenSprite.setTexture(m_screenTexture);
 
@@ -349,8 +353,8 @@ void MainWindow::drawGrid()
 {
 	m_window->setView(*m_staticView);
 
-	sf::Color normalColor =	{  90,  90,  90 };
-	sf::Color mainColor =	{ 150, 150, 150 };
+	sf::Color normalColor = { 90,  90,  90 };
+	sf::Color mainColor = { 150, 150, 150 };
 
 	for (unsigned int i(0); i < m_grid.m_abscissLines.size(); i++)
 	{
